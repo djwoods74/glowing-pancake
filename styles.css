@@ -46,27 +46,31 @@ body {
   position: relative;
   height: 175px;
   width: 125px;
-}
-
-.card-face {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  background-color: transparent;
   border-radius: 12px;
   border-width: 1px;
   border-style: solid;
   overflow: hidden;
-  transition: transform 500ms ease-in-out;
-  backface-visibility: hidden;
 }
 
+.card-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-in-out;
+}
+
+.card-back, .card-front {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
 
 .card:hover .card-face{
 	transform: rotateY(180deg);
-	backface-visibility: visible;
 }
 
 img .card{
@@ -75,19 +79,9 @@ img .card{
 	border-style: solid;
 }
 
-.card.visible .card-back {
-  transform: rotateY(-180deg); 
-}
-
-.card.visible .card-front {
-  transform: rotateY(0); 
-}
-
-
 .card-back {
   background-color: blue;
-  border-color: #000000;
-  transform: rotateY(0); 
+  border-color: #000000; 
 }
 
 .card-front {
