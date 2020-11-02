@@ -1,0 +1,60 @@
+body{
+    background: url(background.jpg);
+    background-attachment: fixed;
+    text-align: center;
+}
+.container{
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    
+}
+.stickman{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#level{
+    border: 2px solid black ;
+    display: inline-block;
+    padding: 5px;
+    width: 160px;
+    background-color: white;
+}
+.levels{
+    font-family: 'Henny Penny', cursive;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    left: 35px;
+    padding: 35px;
+    font-size: 50px;
+   
+}
+#level:hover{
+    background-color: turquoise;
+}
+.bottom input{
+    top: 80%;
+    bottom: 70%;
+    left: 95%;
+    position: relative;
+}
+input[type=submit] {
+    width: 10em;  height: 3em;
+    font-family: 'Henny Penny', cursive;
+    background-color: white;
+}
+.bottom input:hover{
+    background-color: turquoise;
+
+}
+p{
+    color:black;
+    top: 90px;
+}
