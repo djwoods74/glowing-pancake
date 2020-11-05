@@ -1,17 +1,13 @@
 <?php
 include "header.php";
+include "kill.php";
+include "congrat.php";
 ?>
 <?php
 
 require_once'functions.php';
-/*
- * 3d10-hangman-generator.php
- * by Duane O'Brien - http://chaoticneutral.net
- * written for IBM DeveloperWorks
- */
 
 $letters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-
 
 if (empty($_POST)) {
     $words = explode("\n", file_get_contents('medium.txt'));
@@ -39,36 +35,25 @@ if (empty($_POST)) {
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
         }
+		if ((strlen($show) == strlen($word)) && count($wrong) < 6) {
+			congratPlayer($word);
+		}
         
     } else {
         $show = '';
         $wrong[$guess] = $guess;
         if (count($wrong) == 6) {
             killPlayer($word);
-        } else {
+		} else {
             foreach ($wordletters as $letter) {
                 $show .= $right[$letter];
             }
-        }
+		}
     }
     $rightstr = serialize($right);
     $wrongstr = serialize($wrong);
 }
 
-function killPlayer($word) {
-    echo <<<ENDPAGE
-  <!DOCTYPE html>
-  <html>
-   <head>
-      <title>Hangman</title>
-    </head>
-    <body>
-      <h1>You lost!</h1>
-      <p>The word you were trying to guess was <em>$word</em>.</p>
-    </body>
-  </html>
-  ENDPAGE;
-  }
 ?>
 <br><br>
 Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
@@ -92,8 +77,10 @@ Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
               <input type='submit' value='GUESS' />
             </form>
             <br>
-            <a href='generator.php'>Start Over</a>
+			<div class="hangman"><p><img src="<?= $hang[count($wrong)];?>"/></p></div>
+			<br>
+			<a href='medium.php'>Start Over</a>
+			<br>
+			<a href='main.html'>Back To Menu</a>
   </body>
 </html>
-
-

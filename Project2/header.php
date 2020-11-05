@@ -9,4 +9,4 @@
         <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">   
     </head>
     <body>
-        <img src="https://fontmeme.com/permalink/201028/7e9899ab214738bc769592ed3fba2b76.png" alt="super-mario-font" border="0">
+        <img src="banner.png" alt="super-mario-font" border="0">
