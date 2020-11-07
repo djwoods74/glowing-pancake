@@ -2,6 +2,7 @@
 include "header.php";
 include "kill.php";
 include "congrat.php";
+include "guessed.php";
 ?>
 <?php
 
@@ -28,18 +29,19 @@ if (empty($_POST)) {
     $right = unserialize($_POST['rightstr']);
     $wrong = unserialize($_POST['wrongstr']);
     $wordletters = str_split($word);
-    if (stristr($word, $guess)) {
+    if (stristr($word, $guess) && !(stristr($show, $guess))) {
         $show = '';
         $right[$guess] = $guess;
         $wordletters = str_split($word);
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
         }
-		if ((strlen($show) == strlen($word)) && count($wrong) < 6) {
+		if (strcmp($show, $word) == 0 || strcmp($show, $word) == -2) {
 			congratPlayer($word);
-		}
-        
-    } else {
+		} 
+    } elseif (stristr($show, $guess)) {
+		alreadyGuessed($word);
+	} else {
         $show = '';
         $wrong[$guess] = $guess;
         if (count($wrong) == 6) {
@@ -70,7 +72,7 @@ Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
   <body>
           <form method='post'>
               <br>
-              <input name='guess' />
+              <input name='guess' maxlength="1" />
               <input type='hidden' name='word' value='<?php echo $word ?>' />
               <input type='hidden' name='rightstr' value='<?php echo $rightstr ?>' />
               <input type='hidden' name='wrongstr' value='<?php echo $wrongstr ?>' />
