@@ -122,3 +122,10 @@ fieldset .left{
 	float: left;
 	width: 11em;
 }
+table, th, td .leaderboard{
+	width: 33%;
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+}
