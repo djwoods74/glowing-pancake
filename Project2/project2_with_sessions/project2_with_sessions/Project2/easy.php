@@ -51,7 +51,7 @@ if (empty($_POST)) {
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
         }
-		if ((strlen($show) == strlen($word)) && count($wrong) < 6) {
+		if (strcmp($show, $word) == 0 || strcmp($show, $word) == -2) {
 			congratPlayer($word);
 			if(empty($_SESSION['name']) != true) {
 				$current = file_get_contents($file);
@@ -111,64 +111,6 @@ Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
 			<a href='easy.php'>Start Over</a>
 			<br>
 			<a href='main.html'>Back To Menu</a>
-			<?php
-			$leadingUser = array();
-			$leadingScore = array();
-			$leaders = 0;
-			while($leaders < 5){
-				$tempID = 3;
-				$tempScore = 0;
-				$repeat = 0;
-				for($i = 0; $i < (count($information)-1)/7; $i++){
-					if($information[(($i)*7)+3] >= $tempScore){
-						for($k = 0; $k < $leaders; $k++){
-							if($information[(($i)*7)] == $leadingUser[$k]){
-								$repeat = 1;
-							}
-						}
-						if($repeat == 0) {
-								$tempID = (($i)*7)+3;
-								$tempScore = $information[$tempID];
-							}
-							$repeat = 0;
-					}
-				}
-				array_push($leadingUser, $information[$tempID-3]);
-				array_push($leadingScore, $information[$tempID]);
-				$repeat = 0;
-				$leaders += 1;
-			}
-			?>
-				<table class="leaderboard">
-				  <tr>
-					<th colspan="2">LeaderBoard</th>
-				  </tr>
-				  <tr>
-					<th>Username</th>
-					<th>Score</th>
-				  </tr>
-					<tr>
-						<td><?php echo $leadingUser[0]?></td>
-						<td><?php echo $leadingScore[0]?></td>
-					</tr>
-					<tr>
-						<td><?php echo $leadingUser[1]?></td>
-						<td><?php echo $leadingScore[1]?></td>
-					</tr>
-					<tr>
-						<td><?php echo $leadingUser[2]?></td>
-						<td><?php echo $leadingScore[2]?></td>
-					</tr>
-					<tr>
-						<td><?php echo $leadingUser[3]?></td>
-						<td><?php echo $leadingScore[3]?></td>
-					</tr>
-					<tr>
-						<td><?php echo $leadingUser[4]?></td>
-						<td><?php echo $leadingScore[4]?></td>
-					</tr>
-				  </tr>
-				</table>
   </body>
 </html>
 
