@@ -1,0 +1,7 @@
+Tony,1234,tonyderado@yahoo.com,8,0,0,2
+Tony2,1234,tonyderado@yaho,2,0,0,2
+Tony3,23224tt,tonyderado@yahoo,0,0,0,0
+Ada Lovelace,1234,temp@temp,0,0,0,0
+ddd,1234,tm@tm,3,0,1,2
+another,test,t@t,0,0,0,0
+User,123,TM@TM,1,0,0,0
