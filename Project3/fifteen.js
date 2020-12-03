@@ -14,6 +14,10 @@ start the time. */
 var SECONDS = 0; /** Global variable stores number of seconds a user takes to solve the puzzle.
 Initialized at 0 at creation of puzzle and before the board is shuffled and after the puzzle is
 solved*/
+var music = new Audio('main.mp3');/** Global variable that holds the music that is played when
+the game has been loaded. */
+music.volume= 0.5;
+music.loop=true;
 var MOVING = new Audio('move.wav'); /** Global variable that holds the sound that is played when a
 move is made. */
 var WIN = new Audio('win.wav'); /** Global variable that holds the sound that is played when the
@@ -23,7 +27,10 @@ game has been won. */
 and runs the startWithPuzzleSize(rws, clmns) setting the appropriate number of rows represented by
 "rws" and the appropriate number of columns in "clmns" into the parameters. */
 function start() {
+  /** determine number of rows and columns based on user selection (options: 3rx3c, 4rx4c, 6rx6c,
+  8rx8c, 10rx10c) */
   var option = document.getElementById("puzzleSize").value;
+  // startWithPuzzleSize(rows, columns)
   if (option == "4x4") {
     startWithPuzzleSize(4, 4)
   } else if (option == "3x3") {
@@ -35,6 +42,7 @@ function start() {
   } else if (option == "10x10") {
     startWithPuzzleSize(10, 10)
   }
+  // Change background to random pick out of 4 images
   changeBackground();
 }
 /** The startWithPuzzleSize(rws, clmns) function takes the number of rows represented by "rws" and
@@ -50,10 +58,6 @@ represented in the variable "ROWS", and the number of columns represented in "CO
 function then calls the checkForMovable() function and the getBackground() function. Then the
 function makes the shuffle button and background image selector appear. */
 function startPuzzle() {
-  var music = new Audio('main.mp3'); //------------------------ Main Background music Changes ------------//
-  music.volume= 0.5;//------------------------ Main Background music Changes ------------//
-  music.loop=true;
-
   music.play();
   var instruction = document.getElementById("instructions");
   instruction.style.display = 'none';
@@ -363,7 +367,6 @@ function ifWon() {
       count++;
     }
   }
-  document.getElementById("shuffle").className = "visibleElement";
   return true;
 }
 /** The gameWon() function makes visible the page that congragulates the player for solving the
@@ -377,6 +380,15 @@ function gameWon() {
   document.getElementById("puzzleSize").className = "hiddenElement";
   document.getElementById("startGame").className = "hiddenElement";
   WIN.play();
+  for (var i = 0; i < ROWS; i++) {
+		for(var j = 0; j < COLUMNS; j++) {
+			var id = PUZZLECOORDINATES[i][j];
+			console.log(id);
+			if(id != 0){
+				spin(id, i, j);
+			}
+		}
+	}
 }
 /** upon getting the name, loop through the saved scores and prints them to the table until the new
 score is lower then the next saved score, in which the the new score is added and the rest of the
@@ -386,15 +398,6 @@ values. The submitName() function also edits all the puzzle tiles to add a spinn
 the function spin(id, i, j).*/
 function submitName() {
 	var person = document.getElementById("name").value;
-	for (var i = 0; i < ROWS; i++) {
-		for(var j = 0; j < COLUMNS; j++) {
-			var id = PUZZLECOORDINATES[i][j];
-			console.log(id);
-			if(id != 0){
-				spin(id, i, j);
-			}
-		}
-	}
 	if(localStorage.getItem("score") == null) localStorage.setItem("score", "");
 	var oldScore = localStorage.getItem("score");
 	var newScore = person + ", " + MOVES + ", " + SECONDS + "<br>";
@@ -446,6 +449,7 @@ function submitName() {
   document.getElementById("puzzleSize-label").className = "visibleElement";
   document.getElementById("puzzleSize").className = "visibleElement";
   document.getElementById("startGame").className = "visibleElement";
+  document.getElementById("shuffle").className = "visibleElement";
   SECONDS = 0;
   document.getElementById("time").innerHTML = "";
 }

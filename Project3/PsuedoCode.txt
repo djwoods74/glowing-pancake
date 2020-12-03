@@ -1,0 +1,90 @@
+start() {
+	determine number of rows and columns based on user selection (options: 3rx3c, 4rx4c, 6rx6c, 8rx8c, 10rx10c)
+	startWithPuzzleSize(rows, columns);
+	Change background to random pick out of 4 images
+}
+startWithPuzzleSize(rows, columns) {
+	Set global variables ROWS and COLUMNS to rows and columns, respectfully
+	startPuzzle();
+}
+startPuzzle() {
+	Start game music
+	Hide instruction page
+	Create matrix to represent puzzle
+	Clear grid
+	Set number of columns in grid
+	Create solved puzzle grid and set value of from 1 to ((rows * columns) - 1) in matrix, and 0 for
+	the final value
+	checkForMoveable()
+	getBackground()
+	Make the shuffle button and background image selector appear
+	
+}
+checkForMoveable() {
+	Find puzzle pieces in matrix that neighbor the empty space
+	Change their class names to give them hover effects
+}
+getBackground() {
+	Set designated image for puzzle appropriate to the number of rows and columns in the board
+	Create image matrix to represent solved puzzle locations
+	Find and set the image positions on the tiles based on where they are on the solution
+}
+changeBackground() {
+	Choose one of the four images of the game with a random number between 0 - 3
+	Set the class of the body to a class that sets the background image to the
+	random selection of images.
+}
+shuffle() {
+	for(i < 1000) {
+		neighbors[size];
+		neighborsRows[size];
+		neighborsColumns[size];
+		if perpendicular neighboring coordinate positions of empty exist on the puzzle grid,
+		append neighbors, neighborsRows, and neighborsColumns to include coordinate
+		positions
+		Pick random number from 0 - size, and move puzzle pice of selected position from
+		arrays checkPuzzlePiece
+	}
+	set moves to 0
+	reset the clock, start and record the timer, and chang class of shuffle button to hide it
+}
+checkPuzzlePiece(row_pos, col_pos) {
+	if piece at row_pos and col_pos is neighboring the empty space {
+		movePuzzlePiece(row_pos, col_pos, direction);
+	}
+	checkForMovable();
+	getBackground();
+	If ifWon() is true, gameWon()
+	otherwise, moves++ and play move sound
+}
+function movePuzzlePiece(row_pos, col_pos, direction)
+	Set row or column offset according to direction
+	Add offset to the position
+	Switchout values in puzzle matrix to represent the move
+	Switch elements of empty space with selected position
+}
+ifWon() {
+	Scan the puzzle matrix to ensure each value lines up as it should in the solution
+	If it does, return true
+	If it doesn't, return false
+}
+gameWon() {
+	Stop the clock, shoe user congratulations message, ask the user for a name for
+	the leader board
+	play win sound
+	animate tiles with spin(id, i, j)
+}
+submitName() {
+	upon getting the name, loop through the saved scores and prints them to the table until the new
+	score is lower then the next saved score, in which the the new score is added and the rest of the
+	saved scores, Then prints the table to the <p> and saves the new leaderboard in a localStorage,
+	"score". DELETEBOARD is an available command when inputting a name to delete the saved score
+	values. The submitName() function also edits all the puzzle tiles to add a spinning animation with
+	the function spin(id, i, j).
+}
+spin() {
+	Add spinning animation to each tile on the puzzle board
+}
+selectBackgroundImage() {
+	Set class of body according to the image the user selected on the page 
+}
