@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="fifteen.js"></script>
+  </head>
+  <body>
+    <div id="Game">
+      <div id="time"></div>
+      <div id="Grid" class="grid-container">
+      </div>
+      <div id="instructions">
+        <h1> Sliding Puzzle</h1>
+        <h2>How To Play</h2>
+        <p>The pieces are to be pushed around over the board until the picture is complete. <br>
+        The pieces are numbered so that you will know in which order they should be. <br>
+        You can only move one piece at a time and you do it by clicking on it. <br>
+        The number on each piece tells where in the puzzle it belongs.<br>
+        The piece marked 1 should be in the upper left corner of the slide puzzle. </p>
+        <!------------------------------------------------------->
+      </div>
+
+      <br>
+      <label id="puzzleSize-label" class="visibleElement">Choose Puzzle Size: </label>
+      <select id="puzzleSize" name="puzzleSize" class="visibleElement">
+        <option value="4x4">4x4</option>
+        <option value="3x3">3x3</option>
+        <option value="6x6">6x6</option>
+        <option value="8x8">8x8</option>
+        <option value="10x10">10x10</option>
+      </select>
+      <button id="startGame" onclick="start()" class="visibleElement">Change Size</button>
+      <br>
+      <select id="backgroundImage" class="hiddenElement" name="backgroundImage">
+        <option value="Mountians_1">River Mountian</option>
+        <option value="Mountians_2">Snowcap Mountian</option>
+        <option value="Mountians_3">Nightime Mountian</option>
+        <option value="Mountians_4">Sunset Mountian</option>
+      </select>
+      <button id="backgroundSelector" class="hiddenElement" onclick="selectBackgroundImage()">Change Background Image</button>
+      <br>
+      <button id="shuffle" onclick="shuffle()" class="hiddenElement">Shuffle Board</button>
+      <br>
+      <!----------------------------------------------------CHANGES-------------------------------------------------------------------->
+      <p id="scoreBoard"></p>
+      <!----------------------------------------------------CHANGES------------------------------------------------------------------->
+      <div id="WinningPage" class="hiddenPage">
+        <h1>Congratulations!</h1>
+        <br>
+        <h2 id="moves-count"></h2>
+        <br>
+        <input id="name" type="text" value="">
+        <button id="name-submit" onclick="submitName()">Submit Name</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="congratulations.gif" alt="You Really finished it!">
+      </div>
+      <!----------------------------------------------------CHANGES------------------------------------------------------------------->
+    </div>
+  </body>
+</html>
